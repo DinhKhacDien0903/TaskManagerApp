@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="TaskManagerUI.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:TaskManagerUI"
+    xmlns:page="clr-namespace:TaskManagerUI.Features.Pages"
+    Shell.FlyoutBehavior="Flyout"
+    Title="TaskManagerUI">
+    <ShellContent
+        Title="SignIn"
+        ContentTemplate="{DataTemplate page:SignInPage}"
+        Route="SignInPage"/>
+    <ShellContent
+        Title="SignUp"
+        ContentTemplate="{DataTemplate page:SignUpPage}"
+        Route="SignUpPage"/>
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage"/>
+</Shell>
