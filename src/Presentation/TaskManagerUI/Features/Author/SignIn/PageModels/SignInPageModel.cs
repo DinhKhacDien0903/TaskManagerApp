@@ -17,6 +17,9 @@ public partial class SignInPageModel(IMediator mediator) : BasePageModel
     [ObservableProperty]
     private string _errorMessage = string.Empty;
 
+    [ObservableProperty]
+    private bool _hasError = false;
+
     private readonly IMediator _mediator = mediator;
 
     [RelayCommand]
@@ -24,14 +27,65 @@ public partial class SignInPageModel(IMediator mediator) : BasePageModel
     {
         try
         {
+            // Clear previous error
+            HasError = false;
+            ErrorMessage = string.Empty;
+
+            // Validate input
+            if (string.IsNullOrWhiteSpace(Email))
+            {
+                ShowError("Please enter your email address.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(Password))
+            {
+                ShowError("Please enter your password.");
+                return;
+            }
+
+            // Show loading state (you can add a loading property if needed)
             var command = new SignInCommand { Email = Email, Password = Password };
             var user = await _mediator.Send(command);
+
             System.Console.WriteLine($"Check log user: {user.ToJson()}");
-            ErrorMessage = $"Logged in as Verification code sent.";
+
+            // Navigate to main page or dashboard
+            // await Shell.Current.GoToAsync("//MainPage");
+
+            ShowError("Login successful!"); // Temporary success message
         }
         catch (Exception ex)
         {
-            ErrorMessage = ex.Message;
+            ShowError(ex.Message);
         }
+    }
+
+    [RelayCommand]
+    private Task ForgotPasswordAsync()
+    {
+        // Navigate to forgot password page
+        // await Shell.Current.GoToAsync("//ForgotPasswordPage");
+
+        // For now, show a message
+        ShowError("Forgot password feature coming soon!");
+        return Task.CompletedTask;
+    }
+
+    [RelayCommand]
+    private Task NavigateToSignUpAsync()
+    {
+        // Navigate to sign up page
+        // await Shell.Current.GoToAsync("//SignUpPage");
+
+        // For now, show a message
+        ShowError("Navigate to Sign Up page");
+        return Task.CompletedTask;
+    }
+
+    private void ShowError(string message)
+    {
+        ErrorMessage = message;
+        HasError = !string.IsNullOrWhiteSpace(message);
     }
 }

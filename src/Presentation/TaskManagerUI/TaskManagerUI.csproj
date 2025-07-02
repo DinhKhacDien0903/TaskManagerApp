@@ -17,6 +17,7 @@
 		<RootNamespace>TaskManagerUI</RootNamespace>
 		<UseMaui>true</UseMaui>
 		<SingleProject>true</SingleProject>
+		<MauiVersion>9.0.40</MauiVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 
@@ -70,5 +71,16 @@
 		<PackageReference Include="Realm" Version="20.0.0" />
 		<PackageReference Include="MediatR" Version="12.2.0" />
 		<PackageReference Include="DotNetMeteor.HotReload.Plugin" Version="3.3.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="FFImageLoading.Maui" Version="1.2.7" />
+		<PackageReference Include="FluentValidation" Version="11.11.0" />
+		<PackageReference Include="Plugin.LocalNotification" Version="11.1.4" />
+		<PackageReference Include="Plugin.Maui.SwipeCardView" Version="1.0.0-preview1" />
+		<PackageReference Include="Sharpnado.CollectionView.Maui" Version="3.1.2" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+		<PackageReference Include="SkiaSharp.Views.Maui.Controls.Compatibility" Version="2.88.8" />
+		<PackageReference Include="CardsView.Maui" Version="1.1.2" />
 	</ItemGroup>
 </Project>
