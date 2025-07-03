@@ -5,10 +5,12 @@ using MediatR;
 using MongoDB.Bson;
 using TaskManagerUI.Helpers;
 using TaskManagerUI.Features.Pages;
+using TaskManagerUI.Navigation;
 
 namespace TaskManagerUI.Features.PageModels;
 
-public partial class SignInPageModel(IMediator mediator) : BasePageModel
+public partial class SignInPageModel
+    (IMediator mediator, INavigationService navigationService) : BasePageModel(navigationService)
 {
     [ObservableProperty]
     private string _email = string.Empty;

@@ -1,6 +1,7 @@
 using TaskManagerUI;
 using TaskManagerUI.Features.PageModels;
 using TaskManagerUI.Features.Pages;
+using TaskManagerUI.Navigation;
 
 namespace AuthorApp;
 
@@ -9,6 +10,7 @@ public static class DependencyInjection
     public static IServiceCollection AddApplications(this IServiceCollection services)
     {
 #if ANDROID
+        services.AddSingleton<INavigationService, NavigationService>();
 #endif
         return services;
     }
