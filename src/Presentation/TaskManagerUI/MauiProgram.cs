@@ -27,6 +27,7 @@ public static class MauiProgram
 			.UseFFImageLoading()
 			.UseSharpnadoCollectionView(loggerEnable: false, debugLogEnable: false)
 			.UseLocalNotification()
+			.RegisterCompatibilityRenderer()
 			.ConfigureFonts(fonts =>
 			{
 				// fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

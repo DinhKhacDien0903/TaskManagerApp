@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:base="clr-namespace:TaskManagerUI.Utilities.MVVM"
+    xmlns:controls="clr-namespace:TaskManagerUI.UI.Controls"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
     xmlns:pm="clr-namespace:TaskManagerUI.Features.PageModels"
     Title="SignInPage"
@@ -66,7 +67,7 @@
         </Style>
 
         <Style x:Key="InputEntryStyle" TargetType="Entry">
-            <Setter Property="Margin" Value="15,12" />
+            <Setter Property="Margin" Value="10,5" />
             <Setter Property="BackgroundColor" Value="Transparent" />
             <Setter Property="FontAttributes" Value="Bold" />
             <Setter Property="FontSize" Value="{StaticResource LargeFontSize}" />
@@ -116,7 +117,7 @@
                 <StackLayout Spacing="8">
                     <Label Style="{StaticResource FieldLabelStyle}" Text="Email" />
                     <Border Style="{StaticResource InputBorderStyle}">
-                        <Entry
+                        <controls:BorderlessEntry
                             Placeholder="mary.elliot@mail.com"
                             Style="{StaticResource InputEntryStyle}"
                             Text="{Binding Email}" />
@@ -125,7 +126,7 @@
                 <StackLayout Spacing="8">
                     <Label Style="{StaticResource FieldLabelStyle}" Text="Password" />
                     <Border Style="{StaticResource InputBorderStyle}">
-                        <Entry
+                        <controls:BorderlessEntry
                             IsPassword="True"
                             Placeholder="••••••••••••"
                             Style="{StaticResource InputEntryStyle}"
