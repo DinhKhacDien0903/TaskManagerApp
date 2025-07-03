@@ -3,6 +3,8 @@ using TaskManagerUI.Utilities.MVVM;
 using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using MongoDB.Bson;
+using TaskManagerUI.Helpers;
+using TaskManagerUI.Features.Pages;
 
 namespace TaskManagerUI.Features.PageModels;
 
@@ -73,14 +75,10 @@ public partial class SignInPageModel(IMediator mediator) : BasePageModel
     }
 
     [RelayCommand]
-    private Task NavigateToSignUpAsync()
+    async Task NavigateToSignUpAsync()
     {
-        // Navigate to sign up page
-        // await Shell.Current.GoToAsync("//SignUpPage");
-
-        // For now, show a message
-        ShowError("Navigate to Sign Up page");
-        return Task.CompletedTask;
+        AppHelper.SetMainPage(new SignUpPage());
+        await Task.Delay(100);
     }
 
     private void ShowError(string message)

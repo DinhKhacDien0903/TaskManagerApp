@@ -1,18 +1,14 @@
 using TaskManagerUI.Features.PageModels;
+using TaskManagerUI.Helpers;
 using TaskManagerUI.Utilities.MVVM;
 
 namespace TaskManagerUI.Features.Pages;
 
 public partial class SignUpPage : BasePage
 {
-	public SignUpPage(SignUpPageModel pm)
+	public SignUpPage()
 	{
-		BindingContext = pm;
+		BindingContext = ServiceHelper.GetPageModelObservable<SignUpPageModel>();
 		InitializeComponent();
-	}
-
-	private async void OnSignInTapped(object sender, TappedEventArgs e)
-	{
-		await DisplayAlert("Navigation", "Navigate to Sign In page.", "OK");
 	}
 }

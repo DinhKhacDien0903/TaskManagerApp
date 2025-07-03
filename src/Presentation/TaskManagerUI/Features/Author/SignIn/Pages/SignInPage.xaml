@@ -10,6 +10,7 @@
     Title="SignInPage"
     x:DataType="pm:SignInPageModel"
     BackgroundColor="#F8F9FA"
+    NavigationPage.HasNavigationBar="False"
     Shell.NavBarIsVisible="False">
 
     <base:BasePage.Resources>
