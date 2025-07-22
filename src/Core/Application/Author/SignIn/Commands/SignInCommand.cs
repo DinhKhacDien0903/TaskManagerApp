@@ -1,7 +1,7 @@
 using Application.Common.Interfaces;
 using MediatR;
 
-namespace Application.Author.Commands;
+namespace Application.Commands;
 
 public record SignInCommand : IRequest<string>
 {

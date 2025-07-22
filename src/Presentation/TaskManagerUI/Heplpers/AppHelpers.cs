@@ -5,13 +5,14 @@ public static class AppHelper
 {
     private const string HexColorStatusBarStart = "#ffffff";
 
-    public static Page CurrentMainPage
+    public static Page? CurrentMainPage
     {
         get
         {
             try
             {
                 var currentPage = Microsoft.Maui.Controls.Application.Current?.Windows.FirstOrDefault(w => w.Page != null)?.Page;
+                currentPage ??= Microsoft.Maui.Controls.Application.Current?.Windows[0].Page;
                 return currentPage ?? throw new InvalidOperationException("Current page is null, ensure the app has valid page!");
             }
             catch (Exception ex)
@@ -29,10 +30,7 @@ public static class AppHelper
             if (newPage == null)
                 throw new ArgumentNullException(nameof(newPage), "New MainPage cannot be null.");
 
-            var app = Microsoft.Maui.Controls.Application.Current;
-            if (app == null)
-                throw new InvalidOperationException("Current Application instance available.");
-
+            var app = Microsoft.Maui.Controls.Application.Current ?? throw new InvalidOperationException("Current Application instance available.");
             if (app.Windows.Count == 0)
                 throw new InvalidOperationException("No Windows available in the current Application.");
             // #if ANDROID

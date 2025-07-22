@@ -1,16 +1,16 @@
-﻿using Application.Author.Commands;
-using TaskManagerUI.Utilities.MVVM;
+﻿using Application.Commands;
 using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using MongoDB.Bson;
-using TaskManagerUI.Helpers;
 using TaskManagerUI.Features.Pages;
 using TaskManagerUI.Navigation;
 
 namespace TaskManagerUI.Features.PageModels;
 
 public partial class SignUpPageModel
-    (IMediator mediator, INavigationService navigationService) : BasePageModel(navigationService)
+    (IMediator mediator,
+    INavigationService navigationService,
+    INavigationOtherShellService navigationOtherShellService) : BasePageModel(navigationService)
 {
     [ObservableProperty]
     private string _fullName = string.Empty;
@@ -31,6 +31,7 @@ public partial class SignUpPageModel
     private bool _hasError = false;
 
     private readonly IMediator _mediator = mediator;
+    private readonly INavigationOtherShellService _navigationOtherShell = navigationOtherShellService;
 
     [RelayCommand]
     private async Task SignUpAsync()
@@ -92,8 +93,17 @@ public partial class SignUpPageModel
     [RelayCommand]
     async Task NavigateToSignInAsync()
     {
-        AppHelper.SetMainPage(new SignInPage());
-        await Task.Delay(100);
+        if (IsBusy || NavigateToSignInCommand.IsRunning)
+            return;
+        try
+        {
+            IsBusy = true;
+            await _navigationOtherShell.NavigateToAsync<SignInPage>();
+        }
+        finally
+        {
+            IsBusy = false;
+        }
     }
 
     private void ShowError(string message)

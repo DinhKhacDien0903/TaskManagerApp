@@ -10,6 +10,7 @@ using Plugin.LocalNotification;
 using Plugin.Maui.SwipeCardView;
 using Sharpnado.CollectionView;
 using SkiaSharp.Views.Maui.Controls.Hosting;
+using TaskManagerUI.Navigation;
 
 namespace TaskManagerUI;
 
@@ -36,7 +37,8 @@ public static class MauiProgram
 				fonts.AddFont("Quicksand-Regular.ttf", "QuicksandRegular");
 				fonts.AddFont("Quicksand-SemiBold.ttf", "QuicksandSemiBold");
 			});
-
+		builder.Services.AddSingleton<INavigationOtherShellService>(sp =>
+						new NavigationOtherShellService(type => (sp.GetService(type) as ContentPage)!));
 		builder.Services.AddApplicationServices();
 		builder.Services.AddInfrastructureServices();
 		builder.Services.AddApplications();

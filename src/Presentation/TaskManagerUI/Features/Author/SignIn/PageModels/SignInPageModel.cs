@@ -1,16 +1,16 @@
-﻿using Application.Author.Commands;
-using TaskManagerUI.Utilities.MVVM;
-using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using MongoDB.Bson;
-using TaskManagerUI.Helpers;
 using TaskManagerUI.Features.Pages;
 using TaskManagerUI.Navigation;
+using Application.Commands;
 
 namespace TaskManagerUI.Features.PageModels;
 
 public partial class SignInPageModel
-    (IMediator mediator, INavigationService navigationService) : BasePageModel(navigationService)
+    (IMediator mediator,
+    INavigationService navigationService,
+    INavigationOtherShellService navigationOtherShellService) : BasePageModel(navigationService)
 {
     [ObservableProperty]
     private string _email = string.Empty;
@@ -25,6 +25,7 @@ public partial class SignInPageModel
     private bool _hasError = false;
 
     private readonly IMediator _mediator = mediator;
+    private readonly INavigationOtherShellService _navigationOtherShellService = navigationOtherShellService;
 
     [RelayCommand]
     private async Task LoginAsync()
@@ -48,16 +49,11 @@ public partial class SignInPageModel
                 return;
             }
 
-            // Show loading state (you can add a loading property if needed)
             var command = new SignInCommand { Email = Email, Password = Password };
             var user = await _mediator.Send(command);
 
             System.Console.WriteLine($"Check log user: {user.ToJson()}");
-
-            // Navigate to main page or dashboard
-            // await Shell.Current.GoToAsync("//MainPage");
-
-            ShowError("Login successful!"); // Temporary success message
+            ShowError("Login successful!");
         }
         catch (Exception ex)
         {
@@ -68,10 +64,6 @@ public partial class SignInPageModel
     [RelayCommand]
     private Task ForgotPasswordAsync()
     {
-        // Navigate to forgot password page
-        // await Shell.Current.GoToAsync("//ForgotPasswordPage");
-
-        // For now, show a message
         ShowError("Forgot password feature coming soon!");
         return Task.CompletedTask;
     }
@@ -79,8 +71,17 @@ public partial class SignInPageModel
     [RelayCommand]
     async Task NavigateToSignUpAsync()
     {
-        AppHelper.SetMainPage(new SignUpPage());
-        await Task.Delay(100);
+        if (IsBusy || NavigateToSignUpCommand.IsRunning)
+            return;
+        try
+        {
+            IsBusy = true;
+            await _navigationOtherShellService.NavigateToAsync<SignUpPage>();
+        }
+        finally
+        {
+            IsBusy = false;
+        }
     }
 
     private void ShowError(string message)

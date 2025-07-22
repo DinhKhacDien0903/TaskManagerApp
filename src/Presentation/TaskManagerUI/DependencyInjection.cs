@@ -25,8 +25,8 @@ public static class DependencyInjection
     public static IServiceCollection RegisterPages(this IServiceCollection services)
     {
         services.AddTransient<MainPage>();
-        services.AddTransient<SignInPage>();
-        services.AddTransient<SignUpPage>();
+        services.AddSingleton<SignInPage>();
+        services.AddSingleton<SignUpPage>();
 
         return services;
     }

@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace Application.Author.SignIn.Commands;
+namespace Application.Commands;
 
 public class SignInCommandValidator : AbstractValidator<SignInCommand>
 {
@@ -8,10 +8,12 @@ public class SignInCommandValidator : AbstractValidator<SignInCommand>
     {
         RuleFor(x => x.Email)
             .NotEmpty().WithMessage("Email is required.")
-            .EmailAddress().WithMessage("Invalid email format.");
+            .EmailAddress()
+            .WithMessage("Invalid email format.");
 
         RuleFor(x => x.Password)
             .NotEmpty().WithMessage("Password is required.")
-            .MinimumLength(6).WithMessage("Password must be at least 6 characters long.");
+            .MinimumLength(6)
+            .WithMessage("Password must be at least 6 characters long.");
     }
 }

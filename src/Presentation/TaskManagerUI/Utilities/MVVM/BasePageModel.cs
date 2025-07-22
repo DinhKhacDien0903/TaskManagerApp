@@ -21,7 +21,6 @@ public abstract partial class BasePageModel : ObservableObject
                     NavigationService != null && NavigationService is NavigationService { IsProcessing: true };
         }
     }
-    //public IDataService DataService { get; private set; }
     public INavigationService NavigationService { get; private set; }
     protected virtual bool ShouldLoadData { get; set; } = true;
 
