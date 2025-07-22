@@ -1,5 +1,4 @@
 using FluentValidation;
-
 namespace Application.Commands;
 
 public class SignInCommandValidator : AbstractValidator<SignInCommand>

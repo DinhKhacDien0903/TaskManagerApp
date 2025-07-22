@@ -37,6 +37,17 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)' == 'Debug|net9.0-android35.0|AnyCPU'">
+		<AndroidLinkMode>None</AndroidLinkMode>
+		<RunAOTCompilation>False</RunAOTCompilation>
+		<AndroidPackageFormats>apk</AndroidPackageFormats>
+	</PropertyGroup>
+		<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<DefineConstants>$(DefineConstants)</DefineConstants>
+		<EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />

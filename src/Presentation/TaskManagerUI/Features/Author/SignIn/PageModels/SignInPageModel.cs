@@ -36,19 +36,6 @@ public partial class SignInPageModel
             HasError = false;
             ErrorMessage = string.Empty;
 
-            // Validate input
-            if (string.IsNullOrWhiteSpace(Email))
-            {
-                ShowError("Please enter your email address.");
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(Password))
-            {
-                ShowError("Please enter your password.");
-                return;
-            }
-
             var command = new SignInCommand { Email = Email, Password = Password };
             var user = await _mediator.Send(command);
 
