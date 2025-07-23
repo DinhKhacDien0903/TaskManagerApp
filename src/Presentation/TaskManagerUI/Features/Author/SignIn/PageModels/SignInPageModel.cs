@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using MongoDB.Bson;
-using TaskManagerUI.Features.Pages;
 using TaskManagerUI.Navigation;
 using Application.Commands;
+using System.ComponentModel.DataAnnotations;
 
 namespace TaskManagerUI.Features.PageModels;
 
@@ -32,7 +32,6 @@ public partial class SignInPageModel
     {
         try
         {
-            // Clear previous error
             HasError = false;
             ErrorMessage = string.Empty;
 
@@ -40,11 +39,15 @@ public partial class SignInPageModel
             var user = await _mediator.Send(command);
 
             System.Console.WriteLine($"Check log user: {user.ToJson()}");
-            ShowError("Login successful!");
+        }
+        catch (ValidationException ex)
+        {
+            ShowError(ex.Message);
         }
         catch (Exception ex)
         {
-            ShowError(ex.Message);
+            //TODO: Add logger
+            System.Console.WriteLine($"Error during sign-in: {ex.Message}");
         }
     }
 

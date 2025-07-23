@@ -1,8 +1,8 @@
-﻿using Application.Commands;
+﻿using System.ComponentModel.DataAnnotations;
+using Application.Commands;
 using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using MongoDB.Bson;
-using TaskManagerUI.Features.Pages;
 using TaskManagerUI.Navigation;
 
 namespace TaskManagerUI.Features.PageModels;
@@ -38,55 +38,29 @@ public partial class SignUpPageModel
     {
         try
         {
-            // Clear previous error
             HasError = false;
             ErrorMessage = string.Empty;
 
-            // Validate input
-            if (string.IsNullOrWhiteSpace(FullName))
+            var command = new SignUpCommand
             {
-                ShowError("Please enter your full name.");
-                return;
-            }
+                Email = Email,
+                Password = Password,
+                FullName = FullName,
+                ConfirmPassword = ConfirmPassword
+            };
 
-            if (string.IsNullOrWhiteSpace(Email))
-            {
-                ShowError("Please enter your email address.");
-                return;
-            }
+            var result = await _mediator.Send(command);
 
-            if (string.IsNullOrWhiteSpace(Password))
-            {
-                ShowError("Please enter your password.");
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(ConfirmPassword))
-            {
-                ShowError("Please confirm your password.");
-                return;
-            }
-
-            if (Password != ConfirmPassword)
-            {
-                ShowError("Passwords do not match.");
-                return;
-            }
-
-            // Show loading state (you can add a loading property if needed)
-            var command = new SignUpCommand { Email = Email, Password = Password };
-            var user = await _mediator.Send(command);
-
-            System.Console.WriteLine($"Check log user: {user.ToJson()}");
-
-            // Navigate to main page or verification page
-            // await Shell.Current.GoToAsync("//VerificationPage");
-
-            ShowError("Registration successful! Please check your email for verification."); // Temporary success message
+            System.Console.WriteLine($"Check log user: {result.ToJson()}");
+        }
+        catch (ValidationException ex)
+        {
+            ShowError(ex.Message);
         }
         catch (Exception ex)
         {
-            ShowError(ex.Message);
+            //TODO: Add logger
+            System.Console.WriteLine($"Error during sign-up: {ex.Message}");
         }
     }
 

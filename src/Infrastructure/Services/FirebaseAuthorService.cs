@@ -9,9 +9,6 @@ public class FirebaseAuthorService(FirebaseAuthClient authClient) : IAuthorServi
     private readonly FirebaseAuthClient _authClient = authClient;
     public async Task<(Result result, string UserId)> SignInAsync(string email, string password)
     {
-        if (!IsValidParameters(email, password))
-            return (Result.Failure(["Email and password cannot be empty."]), string.Empty);
-
         try
         {
             var authResponse = await _authClient.SignInWithEmailAndPasswordAsync(email, password);
@@ -33,9 +30,6 @@ public class FirebaseAuthorService(FirebaseAuthClient authClient) : IAuthorServi
 
     public async Task<(Result result, string Token)> SignUpAsync(string email, string password)
     {
-        if (!IsValidParameters(email, password))
-            return (Result.Failure(["Email and password cannot be empty."]), string.Empty);
-
         try
         {
             var authResponse = await _authClient.CreateUserWithEmailAndPasswordAsync(email, password);
@@ -53,10 +47,5 @@ public class FirebaseAuthorService(FirebaseAuthClient authClient) : IAuthorServi
         {
             return (Result.Failure([ex.Message]), string.Empty);
         }
-    }
-
-    private bool IsValidParameters(string email, string password)
-    {
-        return !string.IsNullOrWhiteSpace(email.Trim()) && !string.IsNullOrWhiteSpace(password.Trim());
     }
 }
