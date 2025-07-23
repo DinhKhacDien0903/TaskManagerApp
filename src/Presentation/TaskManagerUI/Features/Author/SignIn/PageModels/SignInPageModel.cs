@@ -3,7 +3,6 @@ using MediatR;
 using MongoDB.Bson;
 using TaskManagerUI.Navigation;
 using Application.Commands;
-using System.ComponentModel.DataAnnotations;
 
 namespace TaskManagerUI.Features.PageModels;
 
@@ -42,7 +41,7 @@ public partial class SignInPageModel
         }
         catch (ValidationException ex)
         {
-            ShowError(ex.Message);
+            ShowError(ex.Errors.SelectMany(e => e.Value).FirstOrDefault() ?? string.Empty);
         }
         catch (Exception ex)
         {

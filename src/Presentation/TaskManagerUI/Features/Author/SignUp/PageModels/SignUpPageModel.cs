@@ -55,7 +55,7 @@ public partial class SignUpPageModel
         }
         catch (ValidationException ex)
         {
-            ShowError(ex.Message);
+            ShowError(ex.Errors.SelectMany(e => e.Value).FirstOrDefault() ?? string.Empty);
         }
         catch (Exception ex)
         {
