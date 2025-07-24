@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BasePage
+    x:Class="TaskManagerUI.Features.Pages.WellcomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:TaskManagerUI.Utilities.MVVM"
+    Title="WellcomePage"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    Style="{StaticResource WelcomePageStyle}">
+
+    <base:BasePage.Resources>
+
+        <Color x:Key="WelcomeGradientStart">#E8F8F5</Color>
+        <Color x:Key="WelcomeGradientEnd">#FFF8E1</Color>
+        <Color x:Key="WelcomeTitleColor">#2D3748</Color>
+        <Color x:Key="WelcomeDescriptionColor">#718096</Color>
+        <Color x:Key="WelcomeButtonBackground">#5f33e1</Color>
+        <Color x:Key="WelcomeButtonGradientStart">#7C3AED</Color>
+        <Color x:Key="WelcomeButtonGradientEnd">#5B21B6</Color>
+        <Color x:Key="WelcomeButtonGradientMiddle">#8B5CF6</Color>
+        <Color x:Key="WelcomeButtonText">#FFFFFF</Color>
+
+        <!--  Enhanced Shadow for 3D Bulge Effect  -->
+        <Shadow
+            x:Key="Button3DShadow"
+            Brush="#40000000"
+            Opacity="0.2"
+            Radius="50"
+            Offset="0,4" />
+
+        <Style x:Key="WelcomePageStyle" TargetType="ContentPage">
+            <Setter Property="BackgroundColor" Value="Transparent" />
+        </Style>
+
+        <Style x:Key="WelcomeTitleStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="OpenSansBold" />
+            <Setter Property="FontSize" Value="28" />
+            <Setter Property="TextColor" Value="{StaticResource WelcomeTitleColor}" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="LineBreakMode" Value="WordWrap" />
+            <Setter Property="FontAttributes" Value="Bold" />
+        </Style>
+
+        <Style x:Key="WelcomeDescriptionStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="OpenSansRegular" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="TextColor" Value="{StaticResource WelcomeDescriptionColor}" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="LineBreakMode" Value="WordWrap" />
+            <Setter Property="Margin" Value="20,10,20,0" />
+        </Style>
+
+        <Style x:Key="WelcomeButtonStyle" TargetType="Button">
+            <Setter Property="TextColor" Value="{StaticResource WelcomeButtonText}" />
+            <Setter Property="FontFamily" Value="OpenSansSemibold" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="CornerRadius" Value="25" />
+            <Setter Property="HeightRequest" Value="56" />
+            <Setter Property="Margin" Value="40,20,40,0" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="Shadow" Value="{StaticResource Button3DShadow}" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <RadialGradientBrush Center="0.5,0.3" Radius="1.0">
+                        <GradientStop Offset="0.0" Color="{StaticResource WelcomeButtonGradientMiddle}" />
+                        <GradientStop Offset="0.6" Color="{StaticResource WelcomeButtonGradientStart}" />
+                        <GradientStop Offset="1.0" Color="{StaticResource WelcomeButtonGradientEnd}" />
+                    </RadialGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <Setter.Value>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="1.0" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="0.96" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="WelcomeImageStyle" TargetType="Image">
+            <Setter Property="Aspect" Value="AspectFit" />
+            <Setter Property="HeightRequest" Value="350" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+    </base:BasePage.Resources>
+    <!--  Gradient Background  -->
+    <base:BasePage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Offset="0.0" Color="{StaticResource WelcomeGradientStart}" />
+            <GradientStop Offset="1.0" Color="{StaticResource WelcomeGradientEnd}" />
+        </LinearGradientBrush>
+    </base:BasePage.Background>
+
+    <ScrollView>
+        <Grid
+            Margin="20,20,20,0"
+            Padding="0,0,0,5"
+            RowDefinitions="1*,Auto,Auto,Auto,1*">
+
+            <!--  Top Spacer  -->
+            <BoxView Grid.Row="0" BackgroundColor="Transparent" />
+
+            <!--  Illustration Image  -->
+            <Image
+                Grid.Row="1"
+                Source="temp_image.png"
+                Style="{StaticResource WelcomeImageStyle}" />
+
+            <!--  Title  -->
+            <Label
+                Grid.Row="2"
+                Margin="20,0,20,15"
+                Style="{StaticResource WelcomeTitleStyle}"
+                Text="Task Management &amp;&#10;To-Do List" />
+
+            <!--  Description  -->
+            <Label
+                Grid.Row="3"
+                Margin="30,0,30,30"
+                Style="{StaticResource WelcomeDescriptionStyle}"
+                Text="This productive tool is designed to help you better manage your task project-wise conveniently!" />
+
+            <!--  Let's Start Button  -->
+            <Button
+                Grid.Row="4"
+                HorizontalOptions="FillAndExpand"
+                Style="{StaticResource WelcomeButtonStyle}"
+                Text="Let's Start ➤"
+                VerticalOptions="Start" />
+
+        </Grid>
+    </ScrollView>
+</base:BasePage>

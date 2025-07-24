@@ -1,9 +1,7 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using Application.Common.Extension;
+using CommunityToolkit.Mvvm.Input;
 using MediatR;
-using MongoDB.Bson;
 using TaskManagerUI.Navigation;
-using Application.Commands;
-using Application.Common.Extension;
 namespace TaskManagerUI.Features.PageModels;
 
 public partial class SignInPageModel
@@ -32,11 +30,12 @@ public partial class SignInPageModel
     {
         try
         {
-            ResetError();
-            var command = new SignInCommand { Email = Email, Password = Password };
-            var user = await _mediator.Send(command);
+            //ResetError();
+            //var command = new SignInCommand { Email = Email, Password = Password };
+            //var user = await _mediator.Send(command);
 
-            this.Log($"User signed in: {user.ToJson()}");
+            //this.Log($"User signed in: {user.ToJson()}");
+            await _navigationOtherShellService.NavigateToAsync<WellcomePage>();
         }
         catch (ValidationException ex)
         {

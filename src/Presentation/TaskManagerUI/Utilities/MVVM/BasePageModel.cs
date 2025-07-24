@@ -101,7 +101,7 @@ public abstract partial class BasePageModel : ObservableObject
                 ServiceHelper.GetService<IOrientationService>().Portrait();
             }
         }
-        catch (Exception e)
+        catch (Exception)
         {
             throw;
         }

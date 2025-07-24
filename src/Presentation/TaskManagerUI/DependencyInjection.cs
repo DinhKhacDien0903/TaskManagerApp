@@ -19,6 +19,7 @@ public static class DependencyInjection
     {
         services.AddTransient<SignInPageModel>();
         services.AddTransient<SignUpPageModel>();
+        services.AddTransient<WellcomePageModel>();
         return services;
     }
 
@@ -27,6 +28,7 @@ public static class DependencyInjection
         services.AddTransient<MainPage>();
         services.AddSingleton<SignInPage>();
         services.AddSingleton<SignUpPage>();
+        services.AddSingleton<WellcomePage>();
 
         return services;
     }

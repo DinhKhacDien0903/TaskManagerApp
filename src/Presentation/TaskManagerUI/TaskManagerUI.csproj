@@ -3,15 +3,6 @@
 	<PropertyGroup>
 		<TargetFrameworks>net9.0-android</TargetFrameworks>
 		<RuntimeIdentifiers Condition="$(TargetFramework.Contains('-android'))">android-arm;android-arm64;android-x86;android-x64</RuntimeIdentifiers>
-		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
-		<!-- <TargetFrameworks>$(TargetFrameworks);net9.0-tizen</TargetFrameworks> -->
-
-		<!-- Note for MacCatalyst:
-		The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
-		When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifier>.
-		The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
-		either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
-		<!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
 
 		<OutputType>Exe</OutputType>
 		<RootNamespace>TaskManagerUI</RootNamespace>
@@ -31,11 +22,9 @@
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
 
-		<!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
-		<WindowsPackageType>None</WindowsPackageType>
-
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
 		<EnableSGenConc>True</EnableSGenConc>
+		<NoWarn>$(NoWarn);XC0103</NoWarn>
 		<MauiEnableXamlCBindingWithSourceCompilation>true</MauiEnableXamlCBindingWithSourceCompilation>
 	</PropertyGroup>
 
@@ -51,11 +40,6 @@
 		<UseInterpreter>true</UseInterpreter>
 		<PublishTrimmed>false</PublishTrimmed>
 		<EnableNativeAot>false</EnableNativeAot>
-	</PropertyGroup>
-		<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<DefineConstants>$(DefineConstants)</DefineConstants>
-		<EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
-		<WarningLevel>4</WarningLevel>
 	</PropertyGroup>
 	<PropertyGroup>
 	<EnableNETAnalyzers>false</EnableNETAnalyzers>
@@ -104,5 +88,15 @@
 		<PackageReference Include="Sharpnado.CollectionView.Maui" Version="3.1.2" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Controls.Compatibility" Version="2.88.8" />
 		<PackageReference Include="CardsView.Maui" Version="1.1.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Features\Wellcome\Models\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Features\Wellcome\Pages\WellcomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 </Project>
