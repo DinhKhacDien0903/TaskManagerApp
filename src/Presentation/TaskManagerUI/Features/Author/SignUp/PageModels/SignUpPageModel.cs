@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Application.Commands;
+﻿using Application.Commands;
+using Application.Common.Extension;
 using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using MongoDB.Bson;
@@ -38,9 +38,7 @@ public partial class SignUpPageModel
     {
         try
         {
-            HasError = false;
-            ErrorMessage = string.Empty;
-
+            ResetError();
             var command = new SignUpCommand
             {
                 Email = Email,
@@ -50,8 +48,7 @@ public partial class SignUpPageModel
             };
 
             var result = await _mediator.Send(command);
-
-            System.Console.WriteLine($"Check log user: {result.ToJson()}");
+            this.Log($"User signed up: {result.ToJson()}");
         }
         catch (ValidationException ex)
         {
@@ -59,8 +56,7 @@ public partial class SignUpPageModel
         }
         catch (Exception ex)
         {
-            //TODO: Add logger
-            System.Console.WriteLine($"Error during sign-up: {ex.Message}");
+            this.Log(ex.Message);
         }
     }
 
@@ -84,5 +80,11 @@ public partial class SignUpPageModel
     {
         ErrorMessage = message;
         HasError = !string.IsNullOrWhiteSpace(message);
+    }
+
+    private void ResetError()
+    {
+        HasError = false;
+        ErrorMessage = string.Empty;
     }
 }

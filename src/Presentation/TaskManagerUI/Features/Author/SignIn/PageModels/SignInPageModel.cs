@@ -3,7 +3,7 @@ using MediatR;
 using MongoDB.Bson;
 using TaskManagerUI.Navigation;
 using Application.Commands;
-
+using Application.Common.Extension;
 namespace TaskManagerUI.Features.PageModels;
 
 public partial class SignInPageModel
@@ -24,6 +24,7 @@ public partial class SignInPageModel
     private bool _hasError = false;
 
     private readonly IMediator _mediator = mediator;
+
     private readonly INavigationOtherShellService _navigationOtherShellService = navigationOtherShellService;
 
     [RelayCommand]
@@ -31,13 +32,11 @@ public partial class SignInPageModel
     {
         try
         {
-            HasError = false;
-            ErrorMessage = string.Empty;
-
+            ResetError();
             var command = new SignInCommand { Email = Email, Password = Password };
             var user = await _mediator.Send(command);
 
-            System.Console.WriteLine($"Check log user: {user.ToJson()}");
+            this.Log($"User signed in: {user.ToJson()}");
         }
         catch (ValidationException ex)
         {
@@ -45,8 +44,7 @@ public partial class SignInPageModel
         }
         catch (Exception ex)
         {
-            //TODO: Add logger
-            System.Console.WriteLine($"Error during sign-in: {ex.Message}");
+            this.Log(ex.Message);
         }
     }
 
@@ -62,6 +60,7 @@ public partial class SignInPageModel
     {
         if (IsBusy || NavigateToSignUpCommand.IsRunning)
             return;
+
         try
         {
             IsBusy = true;
@@ -77,5 +76,11 @@ public partial class SignInPageModel
     {
         ErrorMessage = message;
         HasError = !string.IsNullOrWhiteSpace(message);
+    }
+
+    private void ResetError()
+    {
+        HasError = false;
+        ErrorMessage = string.Empty;
     }
 }
