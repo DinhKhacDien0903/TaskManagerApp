@@ -6,8 +6,7 @@ namespace TaskManagerUI.Features.PageModels;
 
 public partial class SignInPageModel
     (IMediator mediator,
-    INavigationService navigationService,
-    INavigationOtherShellService navigationOtherShellService) : BasePageModel(navigationService)
+    INavigationOtherShellService navigationOtherShellService) : BasePageModel()
 {
     [ObservableProperty]
     private string _email = string.Empty;

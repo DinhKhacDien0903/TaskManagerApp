@@ -91,10 +91,46 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="Features\Calender\Models\" />
+	  <Folder Include="Features\Note\Models\" />
+	  <Folder Include="Features\Task\Models\" />
+	  <Folder Include="Features\Profile\Models\" />
+	  <Folder Include="Features\Home\Models\" />
+	  <Folder Include="Features\Shared\" />
 	  <Folder Include="Features\Wellcome\Models\" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Features\Calender\Pages\CalenderPage.xaml.cs">
+	    <DependentUpon>CalenderPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Features\Note\Pages\NotePage.xaml.cs">
+	    <DependentUpon>NotePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Features\Profile\Pages\ProfilePage.xaml.cs">
+	    <DependentUpon>ProfilePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Features\Task\Pages\TaskPage.xaml.cs">
+	    <DependentUpon>TaskPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Features\Calender\Pages\CalenderPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Note\Pages\NotePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Task\Pages\TaskPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Profile\Pages\ProfilePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Home\Pages\HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\Wellcome\Pages\WellcomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

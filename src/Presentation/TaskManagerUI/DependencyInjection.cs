@@ -1,6 +1,4 @@
 using TaskManagerUI;
-using TaskManagerUI.Features.PageModels;
-using TaskManagerUI.Features.Pages;
 using TaskManagerUI.Navigation;
 
 namespace AuthorApp;
@@ -9,9 +7,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddApplications(this IServiceCollection services)
     {
-#if ANDROID
         services.AddSingleton<INavigationService, NavigationService>();
-#endif
         return services;
     }
 
@@ -20,6 +16,11 @@ public static class DependencyInjection
         services.AddTransient<SignInPageModel>();
         services.AddTransient<SignUpPageModel>();
         services.AddTransient<WellcomePageModel>();
+        services.AddTransient<HomePage>();
+        services.AddTransient<CalenderPage>();
+        services.AddTransient<TaskPage>();
+        services.AddTransient<NotePage>();
+        services.AddTransient<ProfilePage>();
         return services;
     }
 
@@ -29,6 +30,11 @@ public static class DependencyInjection
         services.AddSingleton<SignInPage>();
         services.AddSingleton<SignUpPage>();
         services.AddSingleton<WellcomePage>();
+        services.AddSingleton<HomePageModel>();
+        services.AddSingleton<CalenderPageModel>();
+        services.AddSingleton<TaskPageModel>();
+        services.AddSingleton<NotePageModel>();
+        services.AddSingleton<ProfilePageModel>();
 
         return services;
     }

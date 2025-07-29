@@ -50,9 +50,9 @@ public abstract partial class BasePageModel : ObservableObject
 
     #region Methods
 
-    protected BasePageModel(INavigationService navigationService, bool loadDataOnAppearing = true)
+    protected BasePageModel(bool loadDataOnAppearing = true)
     {
-        NavigationService = navigationService;
+        NavigationService = NavigationService = ServiceHelper.GetService<INavigationService>();
         LoadDataOnAppearing = loadDataOnAppearing;
     }
 

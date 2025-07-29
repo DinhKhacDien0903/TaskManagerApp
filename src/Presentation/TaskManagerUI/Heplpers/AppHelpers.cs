@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using TaskManagerUI.Heplpers.Extensions;
 namespace TaskManagerUI.Helpers;
 
 public static class AppHelper
@@ -54,16 +55,36 @@ public static class AppHelper
         }
     }
 
-    // public static void RefreshApp()
-    // {
-    //     //if ((App.Current as App).IsAppSleepingOrCovered)
-    //     //    return;
-    //     MainThread.BeginInvokeOnMainThread(async () =>
-    //     {
-    //         if (CurrentMainPage is AppShell appShell)
-    //             await appShell?.RemoveRootAsync();
-    //         SetMainPage(new AppShell()); // REQUIRE RUN MAIN THREAD
-    //         ServiceHelper.GetService<ISystemStyleManager>().SetStatusBarColor(HexColorStatusBarStart);
-    //     });
-    // }
+    internal static async Task RefreshAppAsync()
+    {
+        if (Microsoft.Maui.Controls.Application.Current is App { IsAppSleepingOrCovered: true })
+            return;
+        var oldShell = Shell.Current;
+        await MainThread.InvokeOnMainThreadAsync(async () =>
+        {
+            if (oldShell is AppShell appShell)
+            {
+                await appShell.RemoveRootAsync();
+                await CoreMethodsExtensions.ForceGarbageCollectorAsync();
+            }
+
+            var newShell = new AppShell();
+            if (oldShell != null)
+            {
+                // TODO: Workaround - Shell Page Memory Leak https://github.com/dotnet/maui/issues/22645  
+                newShell.Loaded += OnNewShellLoaded;
+            }
+
+            SetMainPage(newShell); // REQUIRE RUN MAIN THREAD  
+
+            void OnNewShellLoaded(object? sender, EventArgs e)
+            {
+                oldShell?.TearDown();
+                oldShell = null;
+                //ServiceHelper.GetService<ISystemStyleManager>().SetStatusBarColor(ThemeUtil.GetBackgroundCoverColor());  
+                //ServiceHelper.GetService<IScreenOverlayService>().RemoveOverlay();  
+                newShell.Loaded -= OnNewShellLoaded;
+            }
+        });
+    }
 }

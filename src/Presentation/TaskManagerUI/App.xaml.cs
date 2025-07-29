@@ -4,6 +4,8 @@ namespace TaskManagerUI;
 
 public partial class App : Microsoft.Maui.Controls.Application
 {
+    public bool IsAppSleepingOrCovered { get; set; }
+
     public static BasePageModel? CurrentPageModel
     {
         get

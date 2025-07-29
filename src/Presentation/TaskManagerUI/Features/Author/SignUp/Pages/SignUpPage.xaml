@@ -81,15 +81,6 @@
             <Setter Property="PlaceholderColor" Value="{StaticResource PlaceholderColor}" />
             <Setter Property="TextColor" Value="{StaticResource TextPrimaryColor}" />
         </Style>
-
-        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
-            <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}" />
-            <Setter Property="CornerRadius" Value="12" />
-            <Setter Property="FontAttributes" Value="Bold" />
-            <Setter Property="FontSize" Value="{StaticResource LargeFontSize}" />
-            <Setter Property="HeightRequest" Value="50" />
-            <Setter Property="TextColor" Value="White" />
-        </Style>
     </base:BasePage.Resources>
 
     <ScrollView VerticalScrollBarVisibility="Never">
@@ -197,7 +188,6 @@
                 <Button
                     Margin="0,10,0,0"
                     Command="{Binding SignUpCommand}"
-                    Style="{StaticResource PrimaryButtonStyle}"
                     Text="Register" />
 
                 <!--  Sign In Link  -->

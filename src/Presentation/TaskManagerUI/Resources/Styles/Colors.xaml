@@ -50,6 +50,9 @@
     <Color x:Key="TextGray">#939393</Color>
     <Color x:Key="WhiteSmoke">#f5f2f2</Color>
     <Color x:Key="CharcoalGray">#4A4A4A</Color>
+    <Color x:Key="PrimaryButtonGradientStart">#7C3AED</Color>
+    <Color x:Key="PrimaryButtonGradientEnd">#5B21B6</Color>
+    <Color x:Key="PrimaryButtonGradientMiddle">#8B5CF6</Color>
 
     <toolkit:AppThemeColor x:Key="PrimaryColor" Default="{StaticResource PrimaryHex}" />
     <toolkit:AppThemeColor x:Key="SecondColor" Default="{StaticResource PrimaryHex}" />
@@ -74,4 +77,8 @@
     <toolkit:AppThemeColor x:Key="ComboboxBackgroundColor" Default="{StaticResource WhiteSmoke}" />
     <toolkit:AppThemeColor x:Key="ErrorLabelColor" Default="Red" />
     <toolkit:AppThemeColor x:Key="HyperLinkSignUpColor" Default="{StaticResource CharcoalGray}" />
+
+    <!--  New value  -->
+    <toolkit:AppThemeColor x:Key="PrimaryTextColot" Default="{StaticResource White}" />
+
 </ResourceDictionary>

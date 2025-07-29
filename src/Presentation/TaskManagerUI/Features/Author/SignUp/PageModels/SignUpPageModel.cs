@@ -9,8 +9,7 @@ namespace TaskManagerUI.Features.PageModels;
 
 public partial class SignUpPageModel
     (IMediator mediator,
-    INavigationService navigationService,
-    INavigationOtherShellService navigationOtherShellService) : BasePageModel(navigationService)
+    INavigationOtherShellService navigationOtherShellService) : BasePageModel()
 {
     [ObservableProperty]
     private string _fullName = string.Empty;

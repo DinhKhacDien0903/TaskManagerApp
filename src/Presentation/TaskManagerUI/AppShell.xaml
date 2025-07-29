@@ -5,18 +5,26 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:TaskManagerUI"
     xmlns:page="clr-namespace:TaskManagerUI.Features.Pages"
-    Shell.FlyoutBehavior="Flyout"
-    Title="TaskManagerUI">
-    <ShellContent
-        Title="SignIn"
-        ContentTemplate="{DataTemplate page:SignInPage}"
-        Route="SignInPage"/>
-    <ShellContent
-        Title="SignUp"
-        ContentTemplate="{DataTemplate page:SignUpPage}"
-        Route="SignUpPage"/>
+    Title="TaskManagerUI"
+    Shell.FlyoutBehavior="Flyout">
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage"/>
+        ContentTemplate="{DataTemplate page:HomePage}"
+        Route="HomePage" />
+    <ShellContent
+        Title="Calender"
+        ContentTemplate="{DataTemplate page:CalenderPage}"
+        Route="CalenderPage" />
+    <ShellContent
+        Title="Task"
+        ContentTemplate="{DataTemplate page:TaskPage}"
+        Route="TaskPage" />
+    <ShellContent
+        Title="Note"
+        ContentTemplate="{DataTemplate page:NotePage}"
+        Route="NotePage" />
+    <ShellContent
+        Title="Profile"
+        ContentTemplate="{DataTemplate page:ProfilePage}"
+        Route="ProfilePage" />
 </Shell>
