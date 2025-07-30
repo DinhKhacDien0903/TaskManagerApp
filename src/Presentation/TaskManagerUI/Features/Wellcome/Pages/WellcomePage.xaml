@@ -8,8 +8,7 @@
     Title="WellcomePage"
     x:DataType="pm:WellcomePageModel"
     NavigationPage.HasNavigationBar="False"
-    Shell.NavBarIsVisible="False"
-    Style="{StaticResource WelcomePageStyle}">
+    Shell.NavBarIsVisible="False">
 
     <base:BasePage.Resources>
 
@@ -27,10 +26,6 @@
             Opacity="0.2"
             Radius="50"
             Offset="0,4" />
-
-        <Style x:Key="WelcomePageStyle" TargetType="ContentPage">
-            <Setter Property="BackgroundColor" Value="Transparent" />
-        </Style>
 
         <Style x:Key="WelcomeTitleStyle" TargetType="Label">
             <Setter Property="FontFamily" Value="OpenSansBold" />

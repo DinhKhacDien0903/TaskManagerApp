@@ -3,6 +3,7 @@ using AuthorApp;
 using CommunityToolkit.Maui;
 using DotNet.Meteor.HotReload.Plugin;
 using FFImageLoading.Maui;
+using Fonts;
 using Infrastructure;
 using Microsoft.Extensions.Logging;
 using PanCardView;
@@ -22,6 +23,7 @@ public static class MauiProgram
 		builder
 			.UseMauiApp<App>()
 			.UseMauiCommunityToolkit()
+			.RegisterHandlers()
 			.UseSwipeCardView()
 			.UseSkiaSharp()
 			.UseCardsView()
@@ -36,6 +38,7 @@ public static class MauiProgram
 				fonts.AddFont("Quicksand-Bold.ttf", "QuicksandBold");
 				fonts.AddFont("Quicksand-Regular.ttf", "QuicksandRegular");
 				fonts.AddFont("Quicksand-SemiBold.ttf", "QuicksandSemiBold");
+				fonts.AddFont("FluentSystemIcons-Regular.ttf", FluentUI.FontFamily);
 			});
 		builder.Services.AddSingleton<INavigationOtherShellService>(sp =>
 						new NavigationOtherShellService(type => (sp.GetService(type) as ContentPage)!));

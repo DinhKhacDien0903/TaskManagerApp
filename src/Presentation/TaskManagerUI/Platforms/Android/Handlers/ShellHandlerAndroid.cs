@@ -1,8 +1,14 @@
-﻿using Google.Android.Material.Badge;
+﻿using Android.Graphics.Drawables;
+using Android.Views;
+using Google.Android.Material.Badge;
 using Google.Android.Material.BottomNavigation;
+using Microsoft.Maui.Controls.Platform;
 using Microsoft.Maui.Controls.Platform.Compatibility;
+using Microsoft.Maui.Platform;
+using static Android.Views.ViewGroup;
 
 namespace TaskManagerUI.Handlers;
+
 public partial class ShellHandler
 {
     ShellBottomNaviHandler _shellBottomNaviHandler;
@@ -30,8 +36,17 @@ public class ShellBottomNaviHandler : ShellBottomNavViewAppearanceTracker
     public override void SetAppearance(BottomNavigationView bottomView, IShellAppearanceElement appearance)
     {
         base.SetAppearance(bottomView, appearance);
-        _bottomNaviView = bottomView;
-        _bottomNaviView.SetItemTextAppearanceActiveBoldEnabled(false);
+        var tabbarDrawable = new GradientDrawable();
+        tabbarDrawable.SetCornerRadius(50);
+        tabbarDrawable.SetColor(appearance.EffectiveTabBarBackgroundColor.ToPlatform());
+
+        bottomView.SetBackground(tabbarDrawable);
+        bottomView.SetMinimumHeight(160);
+        if (bottomView != null)
+        {
+            _bottomNaviView = bottomView;
+            _bottomNaviView.SetItemTextAppearanceActiveBoldEnabled(false);
+        }
     }
 
     public void SetMessBadge(int number)
