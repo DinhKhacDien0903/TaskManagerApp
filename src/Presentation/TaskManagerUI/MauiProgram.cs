@@ -33,13 +33,13 @@ public static class MauiProgram
 			.RegisterCompatibilityRenderer()
 			.ConfigureFonts(fonts =>
 			{
-				// fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-				// fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 				fonts.AddFont("Quicksand-Bold.ttf", "QuicksandBold");
 				fonts.AddFont("Quicksand-Regular.ttf", "QuicksandRegular");
 				fonts.AddFont("Quicksand-SemiBold.ttf", "QuicksandSemiBold");
 				fonts.AddFont("FluentSystemIcons-Regular.ttf", FluentUI.FontFamily);
-			});
+				fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialIcons");
+				fonts.AddFont("MaterialIconsRound-Regular.otf", "MaterialIconsRound");
+            });
 		builder.Services.AddSingleton<INavigationOtherShellService>(sp =>
 						new NavigationOtherShellService(type => (sp.GetService(type) as ContentPage)!));
 		builder.Services.AddApplicationServices();

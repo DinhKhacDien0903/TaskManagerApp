@@ -8,25 +8,29 @@
     Shell.FlyoutBehavior="Disabled">
     <TabBar>
         <ShellContent
-            Icon="{StaticResource IconHomePage}"
             Title="Home"
             ContentTemplate="{DataTemplate page:HomePage}"
+            Icon="{StaticResource IconHomePage}"
             Route="HomePage" />
         <ShellContent
             Title="Calender"
             ContentTemplate="{DataTemplate page:CalenderPage}"
+            Icon="{StaticResource IconCalendarPage}"
             Route="CalenderPage" />
         <ShellContent
             Title="Task"
             ContentTemplate="{DataTemplate page:TaskPage}"
+            Icon="{StaticResource IconAddTaskPage}"
             Route="TaskPage" />
         <ShellContent
             Title="Note"
             ContentTemplate="{DataTemplate page:NotePage}"
+            Icon="{StaticResource IconNotePage}"
             Route="NotePage" />
         <ShellContent
             Title="Profile"
             ContentTemplate="{DataTemplate page:ProfilePage}"
+            Icon="{StaticResource IconProfilePage}"
             Route="ProfilePage" />
     </TabBar>
 </Shell>

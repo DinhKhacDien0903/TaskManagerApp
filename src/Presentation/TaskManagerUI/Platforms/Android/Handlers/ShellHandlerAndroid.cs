@@ -1,5 +1,4 @@
 ﻿using Android.Graphics.Drawables;
-using Android.Views;
 using Google.Android.Material.Badge;
 using Google.Android.Material.BottomNavigation;
 using Microsoft.Maui.Controls.Platform;
@@ -37,15 +36,26 @@ public class ShellBottomNaviHandler : ShellBottomNavViewAppearanceTracker
     {
         base.SetAppearance(bottomView, appearance);
         var tabbarDrawable = new GradientDrawable();
-        tabbarDrawable.SetCornerRadius(50);
-        tabbarDrawable.SetColor(appearance.EffectiveTabBarBackgroundColor.ToPlatform());
+        //tabbarDrawable.SetCornerRadii([
+        //    80f, 80f,
+        //    80f, 80f,
+        //    0f, 0f,
+        //    0f, 0f
+        // ]);
 
+        tabbarDrawable.SetCornerRadius(50);
+
+        tabbarDrawable.SetColor(appearance.EffectiveTabBarBackgroundColor.ToPlatform());
         bottomView.SetBackground(tabbarDrawable);
-        bottomView.SetMinimumHeight(160);
         if (bottomView != null)
         {
             _bottomNaviView = bottomView;
             _bottomNaviView.SetItemTextAppearanceActiveBoldEnabled(false);
+            if (bottomView.LayoutParameters is MarginLayoutParams marginLayout)
+            {
+                marginLayout.SetMargins(50, 0, 50, 50);
+                bottomView.LayoutParameters = marginLayout;
+            }
         }
     }
 

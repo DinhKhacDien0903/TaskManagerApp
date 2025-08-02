@@ -58,29 +58,29 @@ public partial class AppShell : Shell
         }
 
         await Task.Delay(1);
-//        var targetOrignalString = args.Target?.GetFullLocation()?.OriginalString;
-//        var currentOrignalString = args.Current?.GetFullLocation()?.OriginalString;
-//        if (targetOrignalString != null && currentOrignalString != null
-//           && currentOrignalString == targetOrignalString
-//           && targetOrignalString.Contains("/home"))
-//        {
-//            if (_homeLocation == targetOrignalString)
-//            {
-//                IsNavigating = false;
-//                return;
-//            }
+        //        var targetOrignalString = args.Target?.GetFullLocation()?.OriginalString;
+        //        var currentOrignalString = args.Current?.GetFullLocation()?.OriginalString;
+        //        if (targetOrignalString != null && currentOrignalString != null
+        //           && currentOrignalString == targetOrignalString
+        //           && targetOrignalString.Contains("/home"))
+        //        {
+        //            if (_homeLocation == targetOrignalString)
+        //            {
+        //                IsNavigating = false;
+        //                return;
+        //            }
 
-//            _homeLocation = targetOrignalString;
-//        }
+        //            _homeLocation = targetOrignalString;
+        //        }
 
-//#if ANDROID
-//        var isAutoStart = UserSetting.Get(StorageKey.IsAutoStart);
-//        if (isAutoStart == null || !Convert.ToBoolean(isAutoStart))
-//        {
-//            UserSetting.Set(StorageKey.IsAutoStart, true.ToString());
-//            await ServiceHelper.GetService<IOpenSetting>().OpenAutoStartSettingScreenAsync();
-//        }
-//#endif
+        //#if ANDROID
+        //        var isAutoStart = UserSetting.Get(StorageKey.IsAutoStart);
+        //        if (isAutoStart == null || !Convert.ToBoolean(isAutoStart))
+        //        {
+        //            UserSetting.Set(StorageKey.IsAutoStart, true.ToString());
+        //            await ServiceHelper.GetService<IOpenSetting>().OpenAutoStartSettingScreenAsync();
+        //        }
+        //#endif
     }
 
     protected async override void OnNavigated(ShellNavigatedEventArgs args)

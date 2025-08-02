@@ -27,8 +27,7 @@
     <OnIdiom
         x:Key="IconSize"
         x:TypeArguments="x:Double"
-        Default="30">
-    </OnIdiom>
+        Default="40" />
 
     <OnIdiom
         x:Key="IconSizeSmall"
@@ -61,24 +60,37 @@
 
     <FontImageSource
         x:Key="IconHomePage"
-        FontFamily="{x:Static f:FluentUI.FontFamily}"
-        Glyph="{x:Static f:FluentUI.fire_24_regular}"
+        FontFamily="MaterialIconsRound"
+        Glyph="&#xe88a;"
+        Size="{StaticResource IconSize}"
+        Color="{AppThemeBinding Light={StaticResource DarkOnLightBackground},
+                                Dark={StaticResource LightOnDarkBackground}}" />
+    <FontImageSource
+        x:Key="IconCalendarPage"
+        FontFamily="MaterialIconsRound"
+        Glyph="&#xebcc;"
         Size="{StaticResource IconSize}"
         Color="{AppThemeBinding Light={StaticResource DarkOnLightBackground},
                                 Dark={StaticResource LightOnDarkBackground}}" />
 
     <FontImageSource
-        x:Key="IconChatPage"
-        FontFamily="{x:Static f:FluentUI.FontFamily}"
-        Glyph="{x:Static f:FluentUI.chat_multiple_heart_32_regular}"
+        x:Key="IconAddTaskPage"
+        FontFamily="MaterialIconsRound"
+        Glyph="&#xe147;"
         Size="{StaticResource IconSize}"
         Color="{AppThemeBinding Light={StaticResource DarkOnLightBackground},
                                 Dark={StaticResource LightOnDarkBackground}}" />
-
     <FontImageSource
-        x:Key="IconAccountControlPage"
-        FontFamily="{x:Static f:FluentUI.FontFamily}"
-        Glyph="{x:Static f:FluentUI.person_heart_24_regular}"
+        x:Key="IconNotePage"
+        FontFamily="MaterialIconsRound"
+        Glyph="&#xf1fc;"
+        Size="{StaticResource IconSize}"
+        Color="{AppThemeBinding Light={StaticResource DarkOnLightBackground},
+                                Dark={StaticResource LightOnDarkBackground}}" />
+    <FontImageSource
+        x:Key="IconProfilePage"
+        FontFamily="MaterialIconsRound"
+        Glyph="&#xe853;"
         Size="{StaticResource IconSize}"
         Color="{AppThemeBinding Light={StaticResource DarkOnLightBackground},
                                 Dark={StaticResource LightOnDarkBackground}}" />
