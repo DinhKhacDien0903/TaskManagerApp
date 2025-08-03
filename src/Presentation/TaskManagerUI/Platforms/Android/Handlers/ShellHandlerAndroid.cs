@@ -1,10 +1,10 @@
-﻿using Android.Graphics.Drawables;
-using Google.Android.Material.Badge;
+﻿using Google.Android.Material.Badge;
 using Google.Android.Material.BottomNavigation;
 using Microsoft.Maui.Controls.Platform;
 using Microsoft.Maui.Controls.Platform.Compatibility;
 using Microsoft.Maui.Platform;
-using static Android.Views.ViewGroup;
+using TaskManagerUI.Heplpers.Extensions;
+using TaskManagerUI.UI;
 
 namespace TaskManagerUI.Handlers;
 
@@ -19,43 +19,35 @@ public partial class ShellHandler
     }
 }
 
-public class ShellBottomNaviHandler : ShellBottomNavViewAppearanceTracker
+public class ShellBottomNaviHandler(IShellContext shellContext, ShellItem shellItem) : ShellBottomNavViewAppearanceTracker(shellContext, shellItem)
 {
     const byte _messageTabIndex = 1;
-
+    private readonly IShellContext shellContext = shellContext;
     BottomNavigationView _bottomNaviView;
     BadgeDrawable _messBadge;
     int? _messTabId => _bottomNaviView?.Menu?.FindItem(_messageTabIndex)?.ItemId;
 
-    public ShellBottomNaviHandler(IShellContext shellContext, ShellItem shellItem)
-        : base(shellContext, shellItem)
-    {
-    }
-
     public override void SetAppearance(BottomNavigationView bottomView, IShellAppearanceElement appearance)
     {
         base.SetAppearance(bottomView, appearance);
-        var tabbarDrawable = new GradientDrawable();
-        //tabbarDrawable.SetCornerRadii([
-        //    80f, 80f,
-        //    80f, 80f,
-        //    0f, 0f,
-        //    0f, 0f
-        // ]);
+        if (!Shell.GetTabBarIsVisible(shellContext.Shell.CurrentItem))
+            return;
 
-        tabbarDrawable.SetCornerRadius(50);
-
-        tabbarDrawable.SetColor(appearance.EffectiveTabBarBackgroundColor.ToPlatform());
-        bottomView.SetBackground(tabbarDrawable);
+        bottomView.SetMinimumHeight(Constant.AppDimensions.MinimumTabBarHeight);
+        bottomView.SetBackground(new SemiCircleBackgroundDrawable());
         if (bottomView != null)
         {
             _bottomNaviView = bottomView;
             _bottomNaviView.SetItemTextAppearanceActiveBoldEnabled(false);
-            if (bottomView.LayoutParameters is MarginLayoutParams marginLayout)
-            {
-                marginLayout.SetMargins(50, 0, 50, 50);
-                bottomView.LayoutParameters = marginLayout;
-            }
+        }
+    }
+
+    protected override void SetBackgroundColor(BottomNavigationView bottomView, Color color)
+    {
+        base.SetBackgroundColor(bottomView, color);
+        if (AppHelper.CurrentMainPage?.GetCurrentPage() is BasePage page && page.BackgroundColor is Color pageColor)
+        {
+            bottomView.RootView?.SetBackgroundColor(pageColor.ToPlatform(Colors.Transparent));
         }
     }
 

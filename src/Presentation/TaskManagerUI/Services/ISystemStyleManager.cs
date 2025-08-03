@@ -6,6 +6,6 @@
 
         void SetNavigationBarColor(string hexColor);
 
-        void SetBackGroundDrawable(string? hexColor);
+        void SetBackGroundDrawable(string? hexColor = "");
     }
 }

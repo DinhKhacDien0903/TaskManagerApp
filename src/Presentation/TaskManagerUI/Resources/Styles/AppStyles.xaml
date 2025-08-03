@@ -76,10 +76,10 @@
     <FontImageSource
         x:Key="IconAddTaskPage"
         FontFamily="MaterialIconsRound"
-        Glyph="&#xe147;"
+        Glyph="&#xe145;"
         Size="{StaticResource IconSize}"
-        Color="{AppThemeBinding Light={StaticResource DarkOnLightBackground},
-                                Dark={StaticResource LightOnDarkBackground}}" />
+        Color="{AppThemeBinding Light={StaticResource White},
+                                Dark={StaticResource White}}" />
     <FontImageSource
         x:Key="IconNotePage"
         FontFamily="MaterialIconsRound"

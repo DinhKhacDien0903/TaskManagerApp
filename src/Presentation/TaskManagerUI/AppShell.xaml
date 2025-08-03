@@ -3,10 +3,18 @@
     x:Class="TaskManagerUI.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:control="clr-namespace:TaskManagerUI.UI"
     xmlns:local="clr-namespace:TaskManagerUI"
     xmlns:page="clr-namespace:TaskManagerUI.Features.Pages"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Shell.FlyoutBehavior="Disabled">
-    <TabBar>
+    <control:CustomTabBar
+        x:DataType="local:AppShell"
+        CenterViewBackgroundColor="{StaticResource Primary}"
+        CenterViewCommand="{Binding CenterViewCommand}"
+        CenterViewImageSource="{StaticResource IconAddTaskPage}"
+        CenterViewText="+"
+        CenterViewVisible="True">
         <ShellContent
             Title="Home"
             ContentTemplate="{DataTemplate page:HomePage}"
@@ -18,11 +26,6 @@
             Icon="{StaticResource IconCalendarPage}"
             Route="CalenderPage" />
         <ShellContent
-            Title="Task"
-            ContentTemplate="{DataTemplate page:TaskPage}"
-            Icon="{StaticResource IconAddTaskPage}"
-            Route="TaskPage" />
-        <ShellContent
             Title="Note"
             ContentTemplate="{DataTemplate page:NotePage}"
             Icon="{StaticResource IconNotePage}"
@@ -32,5 +35,5 @@
             ContentTemplate="{DataTemplate page:ProfilePage}"
             Icon="{StaticResource IconProfilePage}"
             Route="ProfilePage" />
-    </TabBar>
+    </control:CustomTabBar>
 </Shell>

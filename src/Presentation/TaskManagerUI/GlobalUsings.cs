@@ -3,4 +3,5 @@ global using TaskManagerUI.Utilities.MVVM;
 global using TaskManagerUI.Helpers;
 global using TaskManagerUI.Features.Pages;
 global using TaskManagerUI.Features.PageModels;
+global using TaskManagerUI.Heplpers;
 global using ValidationException = Application.Common.Exceptions.ValidationException;

@@ -1,5 +1,8 @@
-﻿using TaskManagerUI.Handlers;
+﻿using CommunityToolkit.Maui.Alerts;
+using System.Windows.Input;
+using TaskManagerUI.Handlers;
 using TaskManagerUI.Heplpers.Extensions;
+using TaskManagerUI.Services;
 
 namespace TaskManagerUI;
 
@@ -123,7 +126,7 @@ public partial class AppShell : Shell
         //        await CheckPermision.CheckPermisionAsync(Permission.Camera);
         //    }
 
-        //    ServiceHelper.GetService<ISystemStyleManager>().SetStatusBarColor(ThemeUtil.GetResourceColorByKey("PrimaryColor").GetHexString());
+        ServiceHelper.GetService<ISystemStyleManager>().SetStatusBarColor(Constant.AppStyle.PrimaryColor);
         //}
 
         // Called when app resume
@@ -266,4 +269,6 @@ public partial class AppShell : Shell
         });
         await Task.Yield();
     }
+
+    public ICommand CenterViewCommand { get; } = new Command(async () => await Toast.Make("CenterViewCommand invoked!").Show());
 }

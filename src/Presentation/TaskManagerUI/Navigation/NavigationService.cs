@@ -1,3 +1,5 @@
+using TaskManagerUI.Services;
+
 namespace TaskManagerUI.Navigation;
 
 public class NavigationService : INavigationService
@@ -93,7 +95,7 @@ public class NavigationService : INavigationService
         if (isPushModal)
         {
             await Navigation.PushModalAsync(page, animated: isAnimation);
-            // ServiceHelper.GetService<ISystemStyleManager>().SetStatusBarColor("#ffffff");
+            ServiceHelper.GetService<ISystemStyleManager>().SetStatusBarColor(Constant.AppStyle.PrimaryColor);
         }
         else
         {

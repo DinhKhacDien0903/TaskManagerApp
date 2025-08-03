@@ -1,5 +1,6 @@
 using TaskManagerUI;
 using TaskManagerUI.Navigation;
+using TaskManagerUI.Services;
 
 namespace AuthorApp;
 
@@ -8,6 +9,7 @@ public static class DependencyInjection
     public static IServiceCollection AddApplications(this IServiceCollection services)
     {
         services.AddSingleton<INavigationService, NavigationService>();
+        services.AddSingleton<ISystemStyleManager, SystemStyleManager>();
         return services;
     }
 

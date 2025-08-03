@@ -7,17 +7,14 @@ namespace TaskManagerUI.Services
 {
     public class SystemStyleManager : ISystemStyleManager
     {
-        public void SetBackGroundDrawable(string? hexColor)
+        public void SetBackGroundDrawable(string? hexColor = "")
         {
             var currentWindow = GetCurrentWindow();
             if (currentWindow == null)
                 return;
 
             var currentMainPage = AppHelper.CurrentMainPage;
-            var currentPageBackgroundColor = currentMainPage?.GetCurrentPage()?.BackgroundColor;
-
-            //TODO: if currentPageBackgroundColor is not null and not transparent, use it instead of hexColor
-
+            hexColor ??= currentMainPage?.GetCurrentPage()?.BackgroundColor.ToHex();
             currentWindow.SetBackgroundDrawable(new Android.Graphics.Drawables.ColorDrawable(
                 string.IsNullOrEmpty(hexColor) ? global::Android.Graphics.Color.Transparent : global::Android.Graphics.Color.ParseColor(hexColor)));
         }
